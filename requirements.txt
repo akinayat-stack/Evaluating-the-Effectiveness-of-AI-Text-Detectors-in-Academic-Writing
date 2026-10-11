@@ -1,0 +1,13 @@
+# Exact pins (CPU-only core pipeline). Optional HF detectors: requirements-hf.txt
+numpy==1.26.4
+pandas==2.2.2
+scikit-learn==1.5.1
+PyYAML==6.0.1
+psutil==6.0.0
+joblib==1.6.0
+python-dateutil==2.9.0.post0
+pytz==2026.4
+scipy==1.17.1
+six==1.17.0
+threadpoolctl==3.7.0
+tzdata==2026.4

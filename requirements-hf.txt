@@ -1,0 +1,4 @@
+# Optional: real neural detectors (roberta_openai). Not needed for the sample run.
+-r requirements.txt
+torch==2.3.1
+transformers==4.42.4
