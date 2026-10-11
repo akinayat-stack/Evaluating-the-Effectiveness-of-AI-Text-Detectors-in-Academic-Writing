@@ -1,0 +1,33 @@
+# Environments
+.venv/
+venv/
+env/
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+# Notebooks
+.ipynb_checkpoints/
+# Logs and results (keep folder via .gitkeep)
+*.log
+results/*
+!results/.gitkeep
+# Data (only the micro sample is tracked)
+data/raw/
+data/processed/
+data/full/
+# Model weights and binaries
+*.pt
+*.bin
+*.safetensors
+*.onnx
+*.ckpt
+*.h5
+# Secrets and OS files
+.env
+*.pem
+.DS_Store
+# Editors
+.vscode/
+.idea/
+*.egg-info/

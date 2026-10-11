@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Evaluating AI-text detectors on hybrid academic texts"
+type: software
+license: MIT
+authors:
+  - family-names: Abulgazinova
+    given-names: Aruzhan
+  - family-names: Kinayatova
+    given-names: Aruzhan
+date-released: 2026-10-11
+repository-code: "https://github.com/YOUR_USERNAME/ai-detector-hybrid-benchmark"
