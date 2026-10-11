@@ -1,0 +1,37 @@
+# Experiment configuration. Independent variables live here, not in code.
+experiment:
+  name: sample_run
+  seed: 42
+  warmup_runs: 1        # untimed passes before measuring
+  n_runs: 3             # timed repetitions per detector
+  timeout_sec: 60       # abort if a single detector pass exceeds this
+
+data:
+  path: data/sample/sample.csv
+  text_col: text
+  label_col: label        # 1 = contains AI-generated text (pure-AI or hybrid), 0 = pure human
+  category_col: category  # pure-human | pure-ai | hybrid
+
+# Independent variable: detector type / configuration.
+# Available: random_baseline, stylometric_heuristic, lexical_formality, ensemble_mean,
+#            roberta_openai (needs requirements-hf.txt + internet on first run)
+detectors:
+  - random_baseline
+  - stylometric_heuristic
+  - lexical_formality
+  - ensemble_mean
+
+# Controlled: one fixed decision threshold for all detectors.
+# Final value is tuned ONCE on the validation split (Week 7) and then frozen.
+decision:
+  threshold: 0.5
+
+# Guardrail metrics (checked and reported for every detector).
+guardrails:
+  max_fpr_human: 0.05     # false positives on pure-human texts
+  max_sec_per_doc: 10.0
+  max_ram_mb: 8192
+  require_no_errors: true
+
+output:
+  dir: results
