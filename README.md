@@ -2,7 +2,7 @@
 
 **Authors:** Aruzhan Abulgazinova, Aruzhan Kinayatova
 
-![ci](https://github.com/YOUR_USERNAME/ai-detector-hybrid-benchmark/actions/workflows/ci.yml/badge.svg)
+![ci](https://github.com/akinayat-stack/Evaluating-the-Effectiveness-of-AI-Text-Detectors-in-Academic-Writing/actions/workflows/ci.yml/badge.svg)
 
 ## Research Question
 How do watermarking, zero-shot and classifier-based AI-text detectors perform on **hybrid** (partially human-edited, partially AI-generated) academic texts, how do AI-content proportion and AI-segment length affect them, and does an ensemble outperform single detectors?
@@ -23,7 +23,7 @@ A reproducible benchmarking harness. Independent variables (detectors, decision 
 
 ## Quickstart
 ```bash
-git clone https://github.com/YOUR_USERNAME/ai-detector-hybrid-benchmark.git && cd ai-detector-hybrid-benchmark
+git clone https://github.com/akinayat-stack/Evaluating-the-Effectiveness-of-AI-Text-Detectors-in-Academic-Writing.git && cd Evaluating-the-Effectiveness-of-AI-Text-Detectors-in-Academic-Writing
 docker build -t ai-detect-bench .
 docker run --rm -v "$(pwd)/results:/app/results" ai-detect-bench
 ```
@@ -73,6 +73,6 @@ Released under the MIT License (see `LICENSE`). Cite via `CITATION.cff` or:
   author = {Abulgazinova, Aruzhan and Kinayatova, Aruzhan},
   title  = {Evaluating AI-text detectors on hybrid academic texts},
   year   = {2026},
-  url    = {https://github.com/YOUR_USERNAME/ai-detector-hybrid-benchmark}
+  url    = {https://github.com/akinayat-stack/Evaluating-the-Effectiveness-of-AI-Text-Detectors-in-Academic-Writing}
 }
 ```
