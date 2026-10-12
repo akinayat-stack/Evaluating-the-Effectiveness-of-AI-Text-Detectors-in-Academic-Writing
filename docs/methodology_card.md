@@ -3,7 +3,7 @@
 ## 1. Project information
 - **Title:** Evaluating the Effectiveness of AI-Text Detectors in Academic Writing: Performance on Hybrid Human–AI Texts
 - **Authors:** Abulgazinova Aruzhan, Kinayatova Aruzhan
-- **GitHub repository:** https://github.com/YOUR_USERNAME/ai-detector-hybrid-benchmark
+- **GitHub repository:** https://github.com/akinayat-stack/Evaluating-the-Effectiveness-of-AI-Text-Detectors-in-Academic-Writing
 
 ## 2. Research type
 **Quantitative (experimental).** All outputs are numeric (F1, AUROC, FNR), conditions are varied and controlled on a constructed corpus, and conclusions come from statistical tests. A qualitative component is unnecessary: the question concerns measurable detection accuracy, not perception or usage.
