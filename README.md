@@ -76,3 +76,21 @@ Released under the MIT License (see `LICENSE`). Cite via `CITATION.cff` or:
   url    = {https://github.com/akinayat-stack/Evaluating-the-Effectiveness-of-AI-Text-Detectors-in-Academic-Writing}
 }
 ```
+## Results & Discussion (TASK 3)
+
+### Benchmark Summary (Test Split)
+*Results are based on synthetic corpus (Week 7-8). F1 is reported as Mean with 95% Bootstrap CI.*
+
+| Detector | F1 Score | F1 95% CI | FPR (Human) | Guardrail Status |
+|----------|----------|-----------|-------------|------------------|
+| ensemble_mean | 0.917 | [0.888, 0.945] | 0.100 | ❌ Fail |
+| stylometric_heuristic | 0.924 | [0.893, 0.950] | 0.071 | ❌ Fail |
+| lexical_formality | 0.795 | [0.746, 0.842] | 0.121 | ❌ Fail |
+| random_baseline | 0.157 | [0.093, 0.222] | 0.079 | ❌ Fail |
+
+### Scientific Plots
+![F1 Distribution](reports/figures/fig1_distribution_boxplot.png)
+![Latency vs Load](reports/figures/fig2_latency_vs_load.png)
+
+### Domain Model
+The formal definition of metrics, target variables, and LaTeX notation is available in [`docs/domain_model.md`](docs/domain_model.md).
