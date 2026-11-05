@@ -40,7 +40,8 @@ To quantify uncertainty, we compute a 95% percentile bootstrap confidence
 interval for each metric $\theta$:
 
 $$
-\mathrm{CI}_{95\%}(\theta) = [\theta^*_{(0.025)}, \theta^*_{(0.975)}]
+\operatorname{CI}_{95\%}(\theta)
+= \bigl[\theta^*_{0.025},\ \theta^*_{0.975}\bigr]
 $$
 
 where $\theta^*_{(q)}$ is the $q$-quantile of $B = 2000$ bootstrap
