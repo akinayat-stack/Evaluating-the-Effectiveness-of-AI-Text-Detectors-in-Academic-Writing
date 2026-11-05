@@ -1,0 +1,10 @@
+test,detector,estimate,ci95_lo,ci95_hi,p_one_sided,n,note,trend_z_fnr_vs_log_length,p_holm,reject_H0_at_0.05
+H2a logistic slope (AI proportion),ensemble_mean,,,,,84,not estimable: all AI-containing documents detected (ceiling/floor),,1.0,0.0
+H2b F1(ensemble_mean) - F1(stylometric_heuristic),ensemble_mean,-0.006990990990990986,-0.040704863493114425,0.02658966392064247,0.6685,329,,,1.0,0.0
+H3 FNR short(<=50) vs long(>=200),ensemble_mean,0.38095238095238093,,,2.6069525181403298e-06,105,,-4.870653142247508,7.82085755442099e-06,1.0
+H2a logistic slope (AI proportion),stylometric_heuristic,,,,,84,not estimable: all AI-containing documents detected (ceiling/floor),,,
+H2a logistic slope (AI proportion),lexical_formality,13.02477556547387,7.451706861242124,47.465307822727546,0.0,84,,,,
+H2a logistic slope (AI proportion),random_baseline,2.717475809187447,-0.7143341036191947,22.366348049851812,0.058,84,,,,
+H3 FNR short(<=50) vs long(>=200),stylometric_heuristic,0.3571428571428571,,,2.8369777403291825e-05,105,,-4.394353744020407,,
+H3 FNR short(<=50) vs long(>=200),lexical_formality,0.5,,,2.2984314464729707e-06,105,,-4.930066485916342,,
+H3 FNR short(<=50) vs long(>=200),random_baseline,0.0,,,0.6436894490120051,105,,-5.774629614384144e-15,,

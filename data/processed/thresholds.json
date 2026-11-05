@@ -1,0 +1,12 @@
+{
+  "thresholds": {
+    "ensemble_mean": 0.37067628986095946,
+    "lexical_formality": 0.5128030878258669,
+    "random_baseline": 0.9135112931115806,
+    "stylometric_heuristic": 0.2724733539639298
+  },
+  "warmup_runs_discarded": 60,
+  "eval_runs_used": 600,
+  "best_single_detector_on_val": "stylometric_heuristic",
+  "seed": 42
+}
