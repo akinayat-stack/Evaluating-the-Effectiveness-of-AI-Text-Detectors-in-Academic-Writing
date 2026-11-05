@@ -14,7 +14,7 @@ A reproducible benchmarking harness. Independent variables (detectors, decision 
 - guardrail metrics: FPR on pure-human text, latency, peak RAM, errors;
 - per-document scores (for the statistical tests in `src/stats.py`).
 
-**Status (Week 6):** tested skeleton + 9-row sample. The built-in detectors are transparent CPU-only smoke-test baselines; their sample results are *not* scientific findings. Full corpus collection and real detectors (Binoculars, DetectGPT, Ghostbuster-like, RoBERTa) are Week 7.
+**Status:** reproducible Task 3 benchmark with committed raw logs, processed summaries, and figures. The built-in detectors are transparent CPU-only smoke-test baselines; these synthetic-corpus results are not claims about production detectors.
 
 ## System Requirements
 - Docker ≥ 24, **or** Python 3.11 (CI and Docker image use 3.11.9; also verified on 3.12)
@@ -43,16 +43,23 @@ Paired bootstrap for two detectors: `python src/stats.py results/scores.csv --a 
 ├── Dockerfile  requirements.txt  requirements-hf.txt
 ├── .github/workflows/ci.yml   # tests + docker build on every push
 ├── configs/config.yaml        # experiment parameters (independent variables)
-├── data/sample/sample.csv     # 9-row smoke-test sample
+├── data/raw/
+│   ├── corpus.csv             # labelled corpus
+│   ├── doc_scores.jsonl       # per-document detector scores
+│   └── test_run.jsonl         # warm-up and evaluation latency logs
+├── data/processed/            # committed reproducibility summaries
 ├── src/
 │   ├── main.py                # entry point
 │   ├── benchmark.py           # measurement + guardrails
 │   ├── detectors.py           # detector implementations
+│   ├── process_data.py        # bootstrap metrics and statistical summaries
+│   ├── visualize.py           # publication-ready figures
 │   └── stats.py               # paired bootstrap for H1b / H2b
 ├── tests/test_pipeline.py
-├── notebooks/                 # analysis (Week 7+)
+├── notebooks/01_data_analysis.ipynb
 ├── docs/methodology_card.md
-└── results/                   # outputs (git-ignored)
+├── reports/figures/           # generated figures
+└── results/                   # optional run outputs (git-ignored)
 ```
 
 ## Planned Benchmarks
@@ -79,18 +86,36 @@ Released under the MIT License (see `LICENSE`). Cite via `CITATION.cff` or:
 ## Results & Discussion (TASK 3)
 
 ### Benchmark Summary (Test Split)
-*Results are based on synthetic corpus (Week 7-8). F1 is reported as Mean with 95% Bootstrap CI.*
+*Results are based on the synthetic corpus. The baseline is `stylometric_heuristic`;
+the proposed method is `ensemble_mean`. F1 is reported with a 95% bootstrap CI.*
 
-| Detector | F1 Score | F1 95% CI | FPR (Human) | Guardrail Status |
-|----------|----------|-----------|-------------|------------------|
-| ensemble_mean | 0.917 | [0.888, 0.945] | 0.100 | ❌ Fail |
-| stylometric_heuristic | 0.924 | [0.893, 0.950] | 0.071 | ❌ Fail |
-| lexical_formality | 0.795 | [0.746, 0.842] | 0.121 | ❌ Fail |
-| random_baseline | 0.157 | [0.093, 0.222] | 0.079 | ❌ Fail |
+| Detector | Role | F1 Score | F1 95% CI | FPR (Human) | Guardrail Status |
+|----------|------|-----------|-------------|-------------|------------------|
+| ensemble_mean | Proposed method | 0.917 | [0.888, 0.945] | 0.100 | ❌ Fail |
+| stylometric_heuristic | Baseline | 0.924 | [0.893, 0.950] | 0.071 | ❌ Fail |
+| lexical_formality | Single detector | 0.795 | [0.746, 0.842] | 0.121 | ❌ Fail |
+| random_baseline | Sanity baseline | 0.157 | [0.093, 0.222] | 0.079 | ❌ Fail |
 
 ### Scientific Plots
-![F1 Distribution](reports/figures/fig1_distribution_boxplot.png)
-![Latency vs Load](reports/figures/fig2_latency_vs_load.png)
+The random baseline is retained in the metrics table as a chance reference but
+is omitted from the plots so the detector comparison remains readable.
+
+![Latency vs Load](reports/figures/fig1_latency_vs_load.png)
+![F1 Distribution](reports/figures/fig2_distribution_boxplot.png)
+
+### Latency Summary (batch size 16)
+
+| Detector | Median ms (p25–p75) | p95 ms | p99 ms |
+|----------|---------------------|--------|--------|
+| ensemble_mean | 4.994 (4.910–5.199) | 6.286 | 7.151 |
+| stylometric_heuristic | 2.238 (2.206–2.316) | 2.461 | 3.349 |
+| lexical_formality | 2.764 (2.653–3.078) | 4.595 | 5.539 |
+| random_baseline | 0.010 (0.010–0.011) | 0.015 | 0.018 |
+
+All four detectors exceed the strict FPR ≤ 5% guardrail on this synthetic test
+split, so every row is marked as a failure even though the quality and latency
+results are otherwise informative. The FPR result limits claims about safe use
+on human-only text and motivates threshold or calibration work before deployment.
 
 ### Domain Model
 The formal definition of metrics, target variables, and LaTeX notation is available in [`docs/domain_model.md`](docs/domain_model.md).

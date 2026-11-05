@@ -11,8 +11,11 @@ sns.set_theme(style="whitegrid")
 palette = sns.color_palette("colorblind")
 
 def plot_f1_distribution(df):
+    df = df.reset_index(drop=True)
     plt.figure(figsize=(8, 5))
-    sns.barplot(data=df, x="detector", y="f1", palette="colorblind", capsize=.1, errorbar=None)
+    ax = sns.barplot(data=df, x="detector", y="f1", palette="colorblind", capsize=.1, errorbar=None)
+    for bar, hatch in zip(ax.patches, ["", "//", "xx"]):
+        bar.set_hatch(hatch)
     
     for i, row in df.iterrows():
         plt.errorbar(x=i, y=row["f1"], 
@@ -25,8 +28,8 @@ def plot_f1_distribution(df):
     plt.xticks(rotation=45)
     plt.tight_layout()
     
-    plt.savefig(FIG_DIR / "fig1_distribution_boxplot.pdf")
-    plt.savefig(FIG_DIR / "fig1_distribution_boxplot.png", dpi=300)
+    plt.savefig(FIG_DIR / "fig2_distribution_boxplot.pdf")
+    plt.savefig(FIG_DIR / "fig2_distribution_boxplot.png", dpi=300)
     plt.close()
 
 def plot_latency_vs_load(df_lat):
@@ -53,8 +56,8 @@ def plot_latency_vs_load(df_lat):
     plt.legend(title="Detector")
     plt.tight_layout()
     
-    plt.savefig(FIG_DIR / "fig2_latency_vs_load.pdf")
-    plt.savefig(FIG_DIR / "fig2_latency_vs_load.png", dpi=300)
+    plt.savefig(FIG_DIR / "fig1_latency_vs_load.pdf")
+    plt.savefig(FIG_DIR / "fig1_latency_vs_load.png", dpi=300)
     plt.close()
 
 if __name__ == "__main__":

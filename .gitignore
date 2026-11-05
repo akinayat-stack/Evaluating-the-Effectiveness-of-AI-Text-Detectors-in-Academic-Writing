@@ -12,9 +12,15 @@ __pycache__/
 *.log
 results/*
 !results/.gitkeep
-# Data (only the micro sample is tracked)
-data/raw/
-data/processed/
+# Data (tracked reproducibility inputs and summaries)
+data/raw/*
+!data/raw/
+!data/raw/test_run.jsonl
+!data/raw/doc_scores.jsonl
+data/processed/*
+!data/processed/
+!data/processed/metrics_summary.csv
+!data/processed/latency_summary.csv
 data/full/
 # Model weights and binaries
 *.pt
